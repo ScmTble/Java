@@ -11,33 +11,52 @@ import java.security.spec.RSAOtherPrimeInfo;
 public class TcpServeDemo {
     public static void main(String[] args) {
 
+        ServerSocket serverSocket = null;
+        Socket socket = null;
+        InputStream is = null;
         try {
             //1.创建Socket
-            ServerSocket serverSocket = new ServerSocket(8080);
+             serverSocket = new ServerSocket(8080);
 
             //2.等待客户端连接，连接成功返回一个新的Socket
-            Socket socket = serverSocket.accept();
+            while (true){
+                socket = serverSocket.accept();
 
-            //3.读取客户端消息
-            InputStream is = socket.getInputStream();
+                //3.读取客户端消息
+                is = socket.getInputStream();
 
-            byte[] bytes = new byte[1024];
-            int len;
-            StringBuilder sb = new StringBuilder();
-            while ((len = is.read(bytes)) != -1) {
-                //注意指定编码格式，发送方和接收方一定要统一，建议使用UTF-8
-                sb.append(new String(bytes, 0, len,"UTF-8"));
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = is.read(buffer)) != -1) {
+                    String str = new String(buffer,0,len);
+                    System.out.println(str);
+                }
             }
-
-            System.out.println("get message from client: " + sb);
-
-            socket.close();
-            is.close();
-            serverSocket.close();
-
 
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (socket != null){
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (is != null){
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (serverSocket != null){
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }
