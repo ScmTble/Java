@@ -1,12 +1,9 @@
 package scmtble.sevday;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.spec.RSAOtherPrimeInfo;
 
 public class TcpServeDemo {
     public static void main(String[] args) {
