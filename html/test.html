@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.6.0.js"></script>
+</head>
+<body>
+<!--    <a id="d1" href="#">awdawd</a>-->
+
+<!--    <a href="javascript:console.log('Hello')">点击</a>-->
+
+<!--    <a href="javascript: new Date().toLocaleTimeString();">点击</a>-->
+
+<!--    <a href="javascript: console.log(new Date().toLocaleTimeString())">点击</a>-->
+
+
+    <input type="file" id="testfile">
+
+    <a href="javascript:void(0)" id="s1">查看</a>
+
+    <p id="msg"></p>
+
+    <button id="btn">点击</button>
+
+
+</body>
+<script>
+    let btn = document.getElementById('btn');
+    // btn.addEventListener('click',(event)=>{console.log("Hello")});
+    // btn.addEventListener('click',(event)=>{console.log("Hello")});
+    // document.addEventListener('click',()=>{console.log("hello")}, false);
+    // document.addEventListener('click',()=>{console.log("hello")}, false);
+    // btn.addEventListener('click',()=>{console.log("hello")}, false);
+    // let event = new Event('click');
+    // btn.dispatchEvent(event);
+
+    let ev = new Event(
+        'look',
+        {
+            'bubbles': true,
+            'cancelable': false
+        }
+    );
+    document.dispatchEvent(ev);
+</script>
+<!--    <script src="xhr.js"></script>-->
+<!--    <script>-->
+
+
+<!--        function crettx(text){-->
+<!--            $('body').append(document.createElement('textarea'));-->
+<!--            $('textarea').text(text);-->
+<!--        }-->
+
+<!--        function creatpic(url){-->
+<!--            $('body').append(document.createElement('img'));-->
+<!--            $('img').url(url);-->
+<!--        }-->
+
+<!--        $('#s1').click(()=>{-->
+
+<!--            let file = $('#testfile').prop('files')[0];-->
+
+<!--            console.log(file);-->
+
+<!--            let reder = new FileReader();-->
+<!--            reder.readAsText(file);-->
+<!--            reder.onload = function (){-->
+
+<!--                // creatpic()-->
+
+<!--            }-->
+
+<!--            $('#msg').text(file.name);-->
+
+<!--        });-->
+
+
+
+<!--    </script>-->
+</html>
